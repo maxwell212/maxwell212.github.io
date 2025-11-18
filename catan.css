@@ -1,0 +1,391 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.game-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dice-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.dice-result {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.die {
+    background: #ff6b6b;
+    color: white;
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dice-total {
+    font-size: 20px;
+    font-weight: bold;
+    color: #667eea;
+    margin-left: 10px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 20px;
+}
+
+.game-board-wrapper {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-board {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    aspect-ratio: 1;
+}
+
+/* Hexagon styles */
+.hex {
+    position: absolute;
+    width: 100px;
+    height: 115px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.hex:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.hex-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.hex-shape {
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #333;
+    position: relative;
+}
+
+.hex-number {
+    background: white;
+    border: 2px solid #333;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hex-number.hot {
+    background: #ff6b6b;
+    color: white;
+}
+
+.hex-icon {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+/* Resource colors */
+.hex-wood .hex-shape {
+    background: #2d5016;
+}
+
+.hex-brick .hex-shape {
+    background: #c1440e;
+}
+
+.hex-wheat .hex-shape {
+    background: #f4c430;
+}
+
+.hex-sheep .hex-shape {
+    background: #90ee90;
+}
+
+.hex-ore .hex-shape {
+    background: #808080;
+}
+
+.hex-desert .hex-shape {
+    background: #daa520;
+}
+
+/* Sidebar */
+.game-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.player-panel,
+.development-cards-panel,
+.game-log-panel {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.player-panel h2,
+.development-cards-panel h2,
+.game-log-panel h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.resources {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.resource-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.resource-item:hover {
+    border-color: #667eea;
+    transform: translateX(5px);
+}
+
+.resource-item > div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.resource-icon {
+    font-size: 24px;
+}
+
+.resource-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.resource-count {
+    background: #667eea;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    min-width: 30px;
+    text-align: center;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+    background: #48bb78;
+    color: white;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.btn-secondary:hover {
+    background: #38a169;
+}
+
+.btn-secondary:disabled {
+    background: #cbd5e0;
+    cursor: not-allowed;
+}
+
+/* Development Cards */
+.dev-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dev-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dev-card-name {
+    font-weight: bold;
+}
+
+.dev-card button {
+    background: white;
+    color: #667eea;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.dev-card button:hover {
+    background: #f0f0f0;
+}
+
+.dev-cards-deck-info {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Game Log */
+.game-log {
+    max-height: 150px;
+    overflow-y: auto;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.log-entry {
+    padding: 6px;
+    margin-bottom: 4px;
+    border-left: 3px solid #667eea;
+    padding-left: 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.log-entry.highlight {
+    background: #e6f3ff;
+    border-left-color: #48bb78;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .game-board {
+        max-width: 600px;
+    }
+
+    .hex {
+        width: 80px;
+        height: 92px;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-board {
+        max-width: 400px;
+    }
+
+    .hex {
+        width: 60px;
+        height: 69px;
+    }
+
+    .hex-icon {
+        font-size: 20px;
+    }
+
+    .hex-number {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+}

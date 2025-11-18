@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catan Game</title>
+    <link rel="stylesheet" href="catan.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>Catan Game</h1>
+            <div class="game-info">
+                <div class="dice-container">
+                    <button id="rollDice" class="btn-primary">Roll Dice</button>
+                    <div class="dice-result">
+                        <span id="dice1" class="die">?</span>
+                        <span id="dice2" class="die">?</span>
+                        <span id="diceTotal" class="dice-total">Total: -</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-board-wrapper">
+                <div id="gameBoard" class="game-board"></div>
+            </div>
+
+            <aside class="game-sidebar">
+                <div class="player-panel">
+                    <h2>Your Resources</h2>
+                    <div class="resources">
+                        <div class="resource-item" data-resource="wood">
+                            <span class="resource-icon">🌲</span>
+                            <span class="resource-name">Wood</span>
+                            <span class="resource-count" id="wood-count">0</span>
+                        </div>
+                        <div class="resource-item" data-resource="brick">
+                            <span class="resource-icon">🧱</span>
+                            <span class="resource-name">Brick</span>
+                            <span class="resource-count" id="brick-count">0</span>
+                        </div>
+                        <div class="resource-item" data-resource="wheat">
+                            <span class="resource-icon">🌾</span>
+                            <span class="resource-name">Wheat</span>
+                            <span class="resource-count" id="wheat-count">0</span>
+                        </div>
+                        <div class="resource-item" data-resource="sheep">
+                            <span class="resource-icon">🐑</span>
+                            <span class="resource-name">Sheep</span>
+                            <span class="resource-count" id="sheep-count">0</span>
+                        </div>
+                        <div class="resource-item" data-resource="ore">
+                            <span class="resource-icon">⛰️</span>
+                            <span class="resource-name">Ore</span>
+                            <span class="resource-count" id="ore-count">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="development-cards-panel">
+                    <h2>Development Cards</h2>
+                    <button id="buyDevCard" class="btn-secondary">Buy Dev Card (1 Ore, 1 Wheat, 1 Sheep)</button>
+                    <div id="devCardsList" class="dev-cards-list"></div>
+                    <div class="dev-cards-deck-info">
+                        <p>Cards in deck: <span id="deckCount">25</span></p>
+                    </div>
+                </div>
+
+                <div class="game-log-panel">
+                    <h3>Game Log</h3>
+                    <div id="gameLog" class="game-log"></div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="catan.js"></script>
+</body>
+</html>
